@@ -5790,11 +5790,11 @@ function ip2int(ip) {
 
 function isCNIP(ipAddr) {
     intIp = ip2int(ipAddr);
-    let isInRange = true;
+    let isInRange = false;
     for (let i = 0; i < cnIp.length; i++) {
         item = cnIp[i];
         if (intIp >= item[0] && intIp <= item[1]) {
-            isInRange = false;
+            isInRange = true;
             break;
         }
     }
@@ -5803,8 +5803,11 @@ function isCNIP(ipAddr) {
 }
 
 function getProxyByIP(ipAddr, host) {
-    let rst = isCNIP(ipAddr) ? no_proxy : proxy;
-    alert('isCNIP ' + rst + ' ' + host);
+    // ChinaIP直连
+    // let rst = isCNIP(ipAddr) ? no_proxy : proxy;
+    // ChinaIP代理
+    let rst = isCNIP(ipAddr) ? proxy : no_proxy;
+    // alert('isCNIP ' + rst + ' ' + host);
     setCache(host, rst);
     return rst;
 }
@@ -5816,7 +5819,7 @@ function getCache(host) {
 function setCache(host, proxyType) {
     // clear cache in a simple way.
     let cacheSize = Object.keys(hostMap).length;
-    alert('caceh size is ' + cacheSize);
+    // alert('caceh size is ' + cacheSize);
     if (cacheSize > 10000) {
         hostMap = {};
     }
@@ -5829,13 +5832,13 @@ function FindProxyForURL(url, host) {
     }
 
     let cacheValue = getCache(host);
-    alert('cache value is ' + cacheValue + ' host is ' + host);
+    // alert('cache value is ' + cacheValue + ' host is ' + host);
     if (cacheValue) {
         return cacheValue;
     }
 
     ipAddr = dnsResolve(host)
-    alert('dns resolve is ' + ipAddr + ' host ' + host);
+    // alert('dns resolve is ' + ipAddr + ' host ' + host);
     if (!ipAddr) {
         setCache(host, no_proxy);
         return no_proxy;

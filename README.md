@@ -4,8 +4,8 @@
 
 使用方法：
 
-将本地socks5代理端口绑定到1080端口。
+将本地socks5代理端口绑定到1086端口。
 
-将PAC地址设置为 https://raw.githubusercontent.com/sodapanda/ChinaIPWhiteListPac/master/IPWhiteListPac.js
+将PAC地址设置为 
 
 DNS污染问题请自行解决。例如使用DoH，具体方法请自行查找。若DNS污染未解决，请不要使用该PAC。

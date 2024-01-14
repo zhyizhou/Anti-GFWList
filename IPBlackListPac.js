@@ -5790,11 +5790,11 @@ function ip2int(ip) {
 
 function isCNIP(ipAddr) {
     intIp = ip2int(ipAddr);
-    let isInRange = true;
+    let isInRange = false;
     for (let i = 0; i < cnIp.length; i++) {
         item = cnIp[i];
         if (intIp >= item[0] && intIp <= item[1]) {
-            isInRange = false;
+            isInRange = true;
             break;
         }
     }
